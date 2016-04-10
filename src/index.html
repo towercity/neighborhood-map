@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Neighborhood Map</title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- slide-in menu -->
+    <div id="side-menu">
+        <h1 id="location-head">Locations:</h1>
+        <!-- TODO: databind placelist -->
+        <ul id="place-list">
+            <li class="place-item">dummy place</li>
+        </ul>
+    </div>
+
+    <!-- map background -->
+    <!-- TODO: add map within div -->
+    <div id="map-div"></div>
+
+    <!-- search header -->
+    <div id="search-bar">
+        <!-- TODO: add hamburger icon to side of input -->
+        <input type="text" value="location" autofocus>
+    </div>
+
+    <script type="text/template" id="map-popup">
+        <div class="popup">
+            <h2 class="popup-head"><!-- TODO: knockout data-bind name --></h2>
+            <p class="popup-desc"><!-- TODO: knockout data-bind desc --></p>
+            <!-- TODO: add instagram/other APIs here -->
+        </div>
+    </script>
+</body>
+<html>
