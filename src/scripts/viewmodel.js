@@ -74,6 +74,7 @@ var ViewModel = function() {
     this.centerToMarker = function(data) {
         map.setZoom(13);
         map.panTo({lat: data.lat, lng: data.lng});
+        self.showMenu();
     };
 
     this.showMenu = function() {
