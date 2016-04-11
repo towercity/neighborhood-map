@@ -1,11 +1,19 @@
-// TODO: Add locations objects array
+var locationArray = [
+    {
+        name: 'Tampa',
+        desc: 'null',
+        lat: null,
+        long: null
+    }
+];
 
 var ViewModel = function() {
     var self = this;
 
+    this.locations = locationArray;
+
     this.showMenu = function() {
-        console.log("Run");
-        $('#side-menu').toggleClass('visible');
+        $('#side-menu').slideToggle('slow');
     }
 };
 
