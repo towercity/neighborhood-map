@@ -16,5 +16,10 @@ function initMap() {
             title: place.name,
             label: place.mapLabel
         });
+
+        marker.addListener('click', function() {
+            map.setZoom(13);
+            map.setCenter(marker.getPosition());
+        });
     });
 }
