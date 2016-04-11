@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- slide-in menu -->
-    <div id="side-menu">
+    <div id="side-menu" data-bind="click: showMenu">
         <h1 id="location-head">Locations:</h1>
         <!-- TODO: databind placelist -->
         <ul id="place-list">
@@ -26,7 +26,7 @@
 
     <!-- search header -->
     <div id="search-container">
-        <span id="hamburger"><i class="fa fa-bars fa-lg"></i></span>
+        <span id="hamburger" data-bind="click: showMenu"><i class="fa fa-bars fa-lg"></i></span>
         <input type="text" value="location" id="search-bar" autofocus>
     </div>
 
@@ -42,6 +42,7 @@
     async defer></script>
     <script src="scripts/map.js" async></script>
     <script src="scripts/libs/knockout-3.4.0.js" async></script>
-    <script src="scripts/libs/jquert-1.12.3.min.js" async></script>
+    <script src="scripts/libs/jquery-1.12.3.min.js" async></script>
+    <script src="scripts/viewmodel.js" async></script>
 </body>
 <html>

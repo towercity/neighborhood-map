@@ -24,7 +24,22 @@ input[type="text"]:focus {
 
 /* Individual styles */
 #side-menu {
-    display: none;
+    position: absolute;
+    z-index: 1;
+    left: -220px;
+    width: 220px;
+    height: 100vh;
+    background-color: white;
+    padding-top: 50px;
+    padding-left: 5px;
+    -webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+#side-menu.visible {
+    left: 0;
+    box-shadow: 1px 1px 5px #888;
 }
 
 #map-div {
