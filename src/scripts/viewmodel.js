@@ -2,7 +2,7 @@
 
 var locationArray = [
     {
-        names: 'Books-a-Million',
+        name: 'Books-a-Million',
         desc: 'null',
         mapLabel: 'S',
         lat: 27.93233,
