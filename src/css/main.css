@@ -24,6 +24,12 @@ input[type="text"]:focus {
   outline: none;
 }
 
+/* Set cursor to pointer for all non-link buttons */
+#hamburger:hover,
+.place-item:hover {
+    cursor: pointer;
+}
+
 /* Individual styles */
 
 #map-div {
