@@ -23,6 +23,9 @@ input[type="text"]:focus {
 }
 
 /* Individual styles */
+#side-menu {
+    display: none;
+}
 
 #map-div {
     position: absolute;;
