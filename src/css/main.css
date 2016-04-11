@@ -1,9 +1,28 @@
+/* Global styles */
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+/* Reset input box styling */
+input[type="text"] {
+  margin: 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+/* Individual styles */
 
 #map-div {
     position: absolute;;
@@ -12,4 +31,25 @@
     z-index: -1;
     width: 100vw;
     height: 100vh;
+}
+
+#search-container {
+    height: 30px;
+    background-color: white;
+    position: fixed;
+    top: 5px;
+    margin: 0 5px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px #888;
+    border-radius: 2px;
+}
+
+#hamburger {
+    padding: 0 5px 0 2.5px;
+}
+
+#search-bar {
+    position: relative;
+    top: 0.5px;
+    font-size: 16px;
 }

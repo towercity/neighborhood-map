@@ -7,6 +7,9 @@
     <title>Neighborhood Map</title>
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" media="(max-width: 515px)" href="css/mobile.css">
+
+    <link rel="stylesheet" href="css/libs/font-awesome-4.5.0/css/font-awesome.min.css">
 </head>
 <body>
     <!-- slide-in menu -->
@@ -19,13 +22,12 @@
     </div>
 
     <!-- map background -->
-    <!-- TODO: add map within div -->
     <div id="map-div"></div>
 
     <!-- search header -->
-    <div id="search-bar">
-        <!-- TODO: add hamburger icon to side of input -->
-        <input type="text" value="location" autofocus>
+    <div id="search-container">
+        <span id="hamburger"><i class="fa fa-bars fa-lg"></i></span>
+        <input type="text" value="location" id="search-bar" autofocus>
     </div>
 
     <script type="text/template" id="map-popup">

@@ -1,0 +1,11 @@
+#side-menu {
+    display: none;
+}
+
+#search-container {
+    width: calc(100% - 10px);
+}
+
+#search-bar {
+    width: calc(100% - 38px);
+}
