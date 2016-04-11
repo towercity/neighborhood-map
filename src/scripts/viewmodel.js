@@ -4,6 +4,30 @@ var locationArray = [
         desc: 'null',
         lat: null,
         long: null
+    },
+    {
+        name: 'Tampa',
+        desc: 'null',
+        lat: null,
+        long: null
+    },
+    {
+        name: 'Tampa',
+        desc: 'null',
+        lat: null,
+        long: null
+    },
+    {
+        name: 'Tampa',
+        desc: 'null',
+        lat: null,
+        long: null
+    },
+    {
+        name: 'Tampa',
+        desc: 'null',
+        lat: null,
+        long: null
     }
 ];
 
@@ -13,7 +37,7 @@ var ViewModel = function() {
     this.locations = locationArray;
 
     this.showMenu = function() {
-        $('#side-menu').slideToggle('slow');
+        $('#side-menu').slideToggle('fast');
     }
 };
 

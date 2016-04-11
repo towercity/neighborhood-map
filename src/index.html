@@ -15,7 +15,10 @@
     <!-- slide-in menu -->
     <div id="side-menu">
         <ul id="place-list" data-bind="foreach: locations">
-            <li class="place-item" data-bind="text: name"></li>
+            <li class="place-item">
+                <span class="place-bullet"><i class="fa fa-map-marker"></i></span>
+                <span data-bind="text: name"></span>
+            </li>
         </ul>
     </div>
 
