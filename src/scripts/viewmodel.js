@@ -71,10 +71,22 @@ var ViewModel = function() {
 
     this.locations = locationArray;
 
+    this.centerToMarker = function(data) {
+        map.setZoom(13);
+        map.panTo({lat: data.lat, lng: data.lng});
+    };
+
     this.showMenu = function() {
         $('#side-menu').slideToggle('fast');
     }
 };
+
+var Location = function(data) {
+    this.name = data.name;
+    this.desc = data.desc;
+    this.mapLabel = data.mapLabel;
+    this.coordinates = {lat: data.lat, lng: data.lng};
+}
 
 window.onload = function() {
     ko.applyBindings(new ViewModel());

@@ -23,7 +23,7 @@
         <!-- slide-in menu -->
         <div id="side-menu">
             <ul id="place-list" data-bind="foreach: locations">
-                <li class="place-item">
+                <li class="place-item" data-bind="click: $parent.centerToMarker">
                     <span><i class="fa fa-map-marker place-bullet"></i></span>
                     <span data-bind="text: name"></span>
                 </li>
@@ -41,9 +41,9 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-s3K891rRSaySEtDuopi1HzJPQhBy5jE&callback=initMap"
     async defer></script>
-    <script src="scripts/map.js" async></script>
     <script src="scripts/libs/knockout-3.4.0.js" async></script>
     <script src="scripts/libs/jquery-1.12.3.min.js" async></script>
     <script src="scripts/viewmodel.js" async></script>
+    <script src="scripts/map.js" async></script>
 </body>
 <html>
