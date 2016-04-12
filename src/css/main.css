@@ -43,7 +43,7 @@ input[type="text"]:focus {
 
 @media (max-width: 515px) {
     #map-div.with-popup {
-        height: 50vh;
+        height: 30vh;
     }
 }
 
@@ -88,14 +88,16 @@ input[type="text"]:focus {
 
 #popup {
     position: absolute;
-    background: white;
+    padding: 5px 20px;
+    overflow: scroll;
 }
 
 @media (max-width: 515px) {
     #popup {
-        height: 50vh;
+        height: 70vh;
         width: 100vw;
         bottom: 0;
+        box-shadow: inset 0 1px 5px #888;
     }
 }
 
@@ -104,7 +106,29 @@ input[type="text"]:focus {
         height: 100vh;
         width: 50vw;
         right: 0;
+        box-shadow: inset 1px 0 5px #888;
     }
+}
+
+#popup-close {
+    position: fixed;;
+    right: 5px;
+    top: 5px;
+}
+
+/* Keep the close button within the div in mobile view */
+@media (max-width: 515px) {
+    #popup-close {
+        top: calc(30vh + 5px);
+    }
+}
+
+#popup-head {
+    text-align: center;
+}
+
+#popup-desc {
+    text-align: justify;
 }
 
 /* Locations list */

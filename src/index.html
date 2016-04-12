@@ -24,7 +24,7 @@
         <div id="side-menu">
             <ul id="place-list" data-bind="foreach: locations">
                 <li class="place-item" data-bind="click: $parent.centerToMarker">
-                    <span><i class="fa fa-map-marker place-bullet"></i></span>
+                    <span><i class="fa fa-map-pin place-bullet"></i></span>
                     <span data-bind="text: name"></span>
                 </li>
             </ul>
@@ -33,9 +33,9 @@
 
     <!-- Info popup that slides up/over on the screen -->
     <article id="popup" data-bind="with: selectedLocation">
-        <div id="popup-arrow"></div>
-        <h2 class="popup-head" data-bind="text: name"><!-- TODO: knockout data-bind name --></h2>
-        <p class="popup-desc" data-bind="text: desc"><!-- TODO: knockout data-bind desc --></p>
+        <div id="popup-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <h2 id="popup-head" data-bind="text: name"><!-- TODO: knockout data-bind name --></h2>
+        <p id="popup-desc" data-bind="text: desc"><!-- TODO: knockout data-bind desc --></p>
         <!-- TODO: add instagram/other APIs here -->
     </article>
 
