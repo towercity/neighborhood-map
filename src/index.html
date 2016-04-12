@@ -13,10 +13,10 @@
 </head>
 <body>
     <!-- map background -->
-    <div id="map-div"></div>
+    <div id="map-div" class="with-popup"></div>
 
     <!-- search header -->
-    <div id="search-container">
+    <header id="search-container">
         <span id="hamburger" data-bind="click: showMenu"><i class="fa fa-bars fa-lg"></i></span>
         <input type="text" value="Location" id="search-bar" autofocus>
 
@@ -29,15 +29,15 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </header>
 
-    <script type="text/template" id="map-popup">
-        <div class="popup">
-            <h2 class="popup-head"><!-- TODO: knockout data-bind name --></h2>
-            <p class="popup-desc"><!-- TODO: knockout data-bind desc --></p>
-            <!-- TODO: add instagram/other APIs here -->
-        </div>
-    </script>
+    <!-- Info popup that slides up/over on the screen -->
+    <article id="popup" data-bind="with: selectedLocation">
+        <div id="popup-arrow"></div>
+        <h2 class="popup-head" data-bind="text: name"><!-- TODO: knockout data-bind name --></h2>
+        <p class="popup-desc" data-bind="text: desc"><!-- TODO: knockout data-bind desc --></p>
+        <!-- TODO: add instagram/other APIs here -->
+    </article>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-s3K891rRSaySEtDuopi1HzJPQhBy5jE&callback=initMap"
     async defer></script>

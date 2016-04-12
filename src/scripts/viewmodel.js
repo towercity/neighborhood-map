@@ -70,6 +70,7 @@ var ViewModel = function() {
     var self = this;
 
     this.locations = locationArray;
+    this.selectedLocation = ko.observable(locationArray[0]);
 
     this.centerToMarker = function(data) {
         map.setZoom(13);
