@@ -69,18 +69,31 @@ var locationArray = [
 var ViewModel = function() {
     var self = this;
 
+    //variables
     this.locations = locationArray;
     this.selectedLocation = ko.observable(locationArray[0]);
 
+    //methods
     this.centerToMarker = function(data) {
         map.setZoom(13);
         map.panTo({lat: data.lat, lng: data.lng});
-        self.showMenu();
     };
 
-    this.showMenu = function() {
-        $('#side-menu').slideToggle('fast');
-    }
+    this.toggleMenu = function() {
+        $('#slide-menu').slideToggle('fast');
+    };
+
+    this.toggleInfoWindow = function() {
+        $('#map-div').toggleClass('with-popup');
+        $('#popup').toggle();
+    };
+
+    //container function for all methods run when a location is clicked
+    this.clickLocation = function(data) {
+        self.toggleMenu();
+        self.toggleInfoWindow();
+        self.centerToMarker(data);
+    };
 };
 
 var Location = function(data) {

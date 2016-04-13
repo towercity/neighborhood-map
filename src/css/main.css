@@ -75,7 +75,7 @@ input[type="text"]:focus {
     font-size: 16px;
 }
 
-#side-menu {
+#slide-menu {
     display: none;
     position: relative;
     width: 100%
@@ -87,6 +87,7 @@ input[type="text"]:focus {
 }
 
 #popup {
+    display: none;
     position: absolute;
     padding: 5px 20px;
     overflow: scroll;
