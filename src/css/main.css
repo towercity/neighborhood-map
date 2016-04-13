@@ -90,6 +90,7 @@ input[type="text"]:focus {
     position: absolute;
     padding: 5px 20px;
     overflow: scroll;
+    background-color: white;
 }
 
 @media (max-width: 515px) {
