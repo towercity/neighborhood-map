@@ -41,17 +41,12 @@ input[type="text"]:focus {
     height: 100%;
 }
 
-@media (max-width: 515px) {
-    #map-div.with-popup {
-        height: 30vh;
+@media (max-width: 440px) {
+    #map-div {
+        display:none;
     }
 }
 
-@media (min-width: 516px) {
-    #map-div.with-popup {
-        width: 50vw;
-    }
-}
 
 /* Top searchbar */
 
@@ -89,27 +84,41 @@ input[type="text"]:focus {
 #popup {
     display: none;
     position: absolute;
-    padding: 5px 20px;
-    overflow: scroll;
     background-color: white;
+    box-shadow: -1px -1px 5px #888;
+
+    overflow: scroll;
 }
 
-@media (max-width: 515px) {
-    #popup {
-        height: 70vh;
-        width: 100vw;
-        bottom: 0;
-        box-shadow: inset 0 1px 5px #888;
-    }
-}
-
-@media (min-width: 516px) {
+@media (max-width: 440px) {
     #popup {
         height: 100vh;
-        width: 50vw;
-        right: 0;
-        box-shadow: inset 1px 0 5px #888;
+        width: 100vw;
+        bottom: 0;
     }
+}
+
+@media (min-width: 441px) {
+    #popup {
+        height: 100vh;
+        max-width: 440px;
+        right: 0;
+    }
+}
+
+#popup-header {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 1px 1px #888;
+}
+
+#pophead-box {
+    background-color: #007FFF;
+    height: 45px;
+    width: 100%;
 }
 
 #popup-close {
@@ -118,15 +127,26 @@ input[type="text"]:focus {
     top: 5px;
 }
 
-/* Keep the close button within the div in mobile view */
-@media (max-width: 515px) {
-    #popup-close {
-        top: calc(30vh + 5px);
-    }
+#pophead-border {
+    margin-top: 2px;
+    background-color: #1D7CF2;
+    width: 100%;
+    height: 3px;
 }
 
-#popup-head {
+#popup-text {
+    margin-top: 50px;
+    padding: 25px 20px;
+}
+
+#popup-pic {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+#popup-title {
     text-align: center;
+    margin-bottom: 10px;
 }
 
 #popup-desc {
