@@ -124,14 +124,19 @@ var ViewModel = function() {
         }
 
         $popup.toggleClass('active');
+
+        $('#map-cover').toggle();
     };
 
     //container function for all methods run when a location is clicked
     this.clickLocation = function(data) {
         self.switchLocation(data);
         self.closeMenu();
-        self.toggleInfoWindow();
         self.centerToMarker(data);
+        //checks if info window is open before toggling it
+        if (!$('#popup').hasClass('active')) {
+            self.toggleInfoWindow();
+        }
     };
 };
 
