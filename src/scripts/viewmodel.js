@@ -84,8 +84,13 @@ var ViewModel = function() {
     };
 
     this.toggleInfoWindow = function() {
-        $('#map-div').toggleClass('with-popup');
-        $('#popup').toggle();
+        var $windowWidth = $(window).width();
+        if ($windowWidth > 440) {
+            //TODO: jquery slide animate
+            $('#popup').toggle();
+        } else if ($windowWidth <= 440) {
+            $('#popup').slideToggle();
+        }
     };
 
     //container function for all methods run when a location is clicked
