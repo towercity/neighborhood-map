@@ -74,6 +74,10 @@ var ViewModel = function() {
     this.selectedLocation = ko.observable(this.locations()[0]);
 
     //methods
+    this.switchLocation = function(data) {
+        self.selectedLocation(data);
+    }
+
     this.centerToMarker = function(data) {
         map.setZoom(13);
         map.panTo({lat: data.lat, lng: data.lng});
@@ -114,6 +118,7 @@ var ViewModel = function() {
 
     //container function for all methods run when a location is clicked
     this.clickLocation = function(data) {
+        self.switchLocation(data);
         self.toggleMenu();
         self.toggleInfoWindow();
         self.centerToMarker(data);
