@@ -41,13 +41,6 @@ input[type="text"]:focus {
     height: 100%;
 }
 
-@media (max-width: 440px) {
-    #map-div {
-        display:none;
-    }
-}
-
-
 /* Top searchbar */
 
 #search-container {
@@ -86,7 +79,6 @@ input[type="text"]:focus {
     position: absolute;
     background-color: white;
     box-shadow: -1px -1px 5px #888;
-
     overflow: scroll;
 }
 
@@ -122,7 +114,7 @@ input[type="text"]:focus {
 }
 
 #popup-close {
-    position: fixed;;
+    position: absolute;
     right: 5px;
     top: 5px;
 }
