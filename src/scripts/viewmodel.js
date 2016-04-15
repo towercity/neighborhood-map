@@ -124,8 +124,6 @@ var ViewModel = function() {
         }
 
         $popup.toggleClass('active');
-
-        $('#map-cover').toggle();
     };
 
     //container function for all methods run when a location is clicked
