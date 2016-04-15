@@ -70,8 +70,8 @@ var ViewModel = function() {
     var self = this;
 
     //variables
-    this.locations = locationArray;
-    this.selectedLocation = ko.observable(locationArray[0]);
+    this.locations = ko.observableArray(locationArray);
+    this.selectedLocation = ko.observable(this.locations()[0]);
 
     //methods
     this.centerToMarker = function(data) {
@@ -85,12 +85,31 @@ var ViewModel = function() {
 
     this.toggleInfoWindow = function() {
         var $windowWidth = $(window).width();
-        if ($windowWidth > 440) {
-            //TODO: jquery slide animate
-            $('#popup').toggle();
-        } else if ($windowWidth <= 440) {
-            $('#popup').slideToggle();
+        var $popup = $('#popup');
+
+        if ($windowWidth <= 440) {
+            if ($popup.hasClass('active')) {
+                $popup.animate({
+                    bottom: '-100vh'
+                }, 300);
+            } else {
+                $popup.animate({
+                    bottom: 0
+                }, 300);
+            }
+        } else if ($windowWidth > 440) {
+            if ($popup.hasClass('active')) {
+                $popup.animate({
+                    right: -440
+                }, 300);
+            } else {
+                $popup.animate({
+                    right: 0
+                }, 300);
+            }
         }
+
+        $popup.toggleClass('active');
     };
 
     //container function for all methods run when a location is clicked

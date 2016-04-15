@@ -75,7 +75,6 @@ input[type="text"]:focus {
 }
 
 #popup {
-    display: none;
     position: absolute;
     background-color: white;
     box-shadow: -1px -1px 5px #888;
@@ -86,15 +85,15 @@ input[type="text"]:focus {
     #popup {
         height: 100vh;
         width: 100vw;
-        bottom: 0;
+        bottom: -100vh;
     }
 }
 
 @media (min-width: 441px) {
     #popup {
         height: 100vh;
-        max-width: 440px;
-        right: 0;
+        width: 440px;
+        right: -440px;
     }
 }
 
@@ -104,7 +103,7 @@ input[type="text"]:focus {
     width: 100%;
     margin: 0;
     padding: 0;
-    box-shadow: 0 1px 1px #888;
+    box-shadow: -1px 1px 1px #888;
 }
 
 #pophead-box {
@@ -114,9 +113,9 @@ input[type="text"]:focus {
 }
 
 #popup-close {
-    position: absolute;
-    right: 5px;
+    position: relative;
     top: 5px;
+    left: 5px;
 }
 
 #pophead-border {
