@@ -31,6 +31,7 @@ function initMap() {
             marker.addListener('click', function() {
                 map.setZoom(13);
                 map.panTo(marker.getPosition());
+                my.vm.clickLocation(place);
             });
         });
     });

@@ -70,10 +70,12 @@ var ViewModel = function() {
     var self = this;
 
     //variables
+
     this.locations = ko.observableArray(locationArray);
     this.selectedLocation = ko.observable(this.locations()[0]);
 
     //methods
+
     this.switchLocation = function(data) {
         self.selectedLocation(data);
     }
@@ -83,8 +85,16 @@ var ViewModel = function() {
         map.panTo({lat: data.lat, lng: data.lng});
     };
 
+    //container function to prevent mapmarker clicks from opening the menu
+    this.closeMenu = function() {
+        if ($('#slide-menu').hasClass('open')) {
+            self.toggleMenu();
+        }
+    }
+
     this.toggleMenu = function() {
         $('#slide-menu').slideToggle('fast');
+        $('#slide-menu').toggleClass('open');
     };
 
     this.toggleInfoWindow = function() {
@@ -119,7 +129,7 @@ var ViewModel = function() {
     //container function for all methods run when a location is clicked
     this.clickLocation = function(data) {
         self.switchLocation(data);
-        self.toggleMenu();
+        self.closeMenu();
         self.toggleInfoWindow();
         self.centerToMarker(data);
     };
@@ -132,6 +142,9 @@ var Location = function(data) {
     this.coordinates = {lat: data.lat, lng: data.lng};
 }
 
+//Declare veiwmodel outside of applyBindings so map functions can access it
+var my = {vm: null};
 window.onload = function() {
-    ko.applyBindings(new ViewModel());
+    my.vm = new ViewModel();
+    ko.applyBindings(my.vm);
 };
