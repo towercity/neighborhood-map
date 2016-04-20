@@ -60,17 +60,6 @@ function initMap() {
     // Waits till whole page is loaded to ensure vars from other files are available
     $(document).ready(function() {
         var locations = locationFinder();
-
         pinMarkers(locations);
-
-        /*
-        locationArray.forEach(function(place) {
-            marker.addListener('click', function() {
-                map.setZoom(13);
-                map.panTo(place.coordinates);
-                my.vm.clickLocation(place);
-            });
-        });
-        */
     });
 };
