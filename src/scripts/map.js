@@ -7,9 +7,9 @@ function initMap() {
     var mapDiv = document.getElementById('map-div');
     // Create a map object and specify the DOM element for display.
     map = new google.maps.Map(mapDiv, {
-        center: {lat: 27.865, lng: -82.459},
+        center: {lat: 25.721, lng: -80.2777},
         mapTypeControl: false,
-        zoom: 10,
+        zoom: 12,
         methods: {
             reenter: function(latLang) {
                 map.setCenter(latLang);
