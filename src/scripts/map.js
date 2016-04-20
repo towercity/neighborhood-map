@@ -9,7 +9,7 @@ function initMap() {
     map = new google.maps.Map(mapDiv, {
         center: {lat: 25.721, lng: -80.2777},
         mapTypeControl: false,
-        zoom: 12
+        zoom: 13
     });
 
     function locationFinder() {
