@@ -141,8 +141,12 @@ var ViewModel = function() {
 var Location = function(data) {
     this.name = data.name;
     this.desc = data.desc;
-    this.mapLabel = data.mapLabel;
-    this.coordinates = {lat: data.lat, lng: data.lng};
+    this.address = data.address;
+    this.price = data.price;
+
+    //pulls lat-lng data from address via google maps api and puts into this.coordinates
+    var coordinatesObject = map.methods.geocodeAddress(data.address);
+    this.coordinates = {lat: coordinatesObject.lat, lng: coordinatesObject.lng};
 }
 
 //Declare veiwmodel outside of applyBindings so map functions can access it
