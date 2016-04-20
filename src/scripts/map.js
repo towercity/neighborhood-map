@@ -10,19 +10,10 @@ function initMap() {
         center: {lat: 25.721, lng: -80.2777},
         mapTypeControl: false,
         zoom: 12,
+        geocoder: new google.maps.Geocoder(),
         methods: {
             reenter: function(latLang) {
                 map.setCenter(latLang);
-            },
-            geocodeAddress: function(address) {
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({'address': address}, function(results, status) {
-                    if (status === google.maps.GeocoderStatus.OK){
-                        return results[0].geometry.location;
-                    } else {
-                        console.log(status);
-                    }
-                });
             }
         }
     });
@@ -31,17 +22,21 @@ function initMap() {
     $(document).ready(function() {
         // Iterate through locationArray and add markers to the map
         locationArray.forEach(function(place) {
-            var marker = new google.maps.Marker({
-                position: {lat: place.lat, lng: place.lng},
-                map: map,
-                title: place.name,
-                label: place.mapLabel
-            });
+            map.geocoder.geocode({'address': place.address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK){
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        map: map
+                    });
 
-            marker.addListener('click', function() {
-                map.setZoom(13);
-                map.panTo(marker.getPosition());
-                my.vm.clickLocation(place);
+                    marker.addListener('click', function() {
+                        map.setZoom(13);
+                        map.panTo(marker.getPosition());
+                        my.vm.clickLocation(place);
+                    });
+                } else {
+                    console.log(status);
+                }
             });
         });
     });
