@@ -143,6 +143,10 @@ var Location = function(data) {
     this.desc = data.desc;
     this.address = data.address;
     this.price = data.price;
+    this.bedrooms = data.bedrooms;
+    this.bathrooms = data.bathrooms;
+    this.sqft = data.sqft;
+    this.laundry = data.laundry;
 
     //pulls lat-lng data from address via google maps api and puts into this.coordinates
     var coordinatesObject = map.methods.geocodeAddress(data.address);
