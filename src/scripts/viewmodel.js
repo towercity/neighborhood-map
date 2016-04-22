@@ -70,8 +70,7 @@ var ViewModel = function() {
     }
 
     this.centerToMarker = function(data) {
-        map.setZoom(13);
-        map.panTo({lat: data.lat, lng: data.lng});
+        map.methods.centerToMarker(data);
     };
 
     //container function to prevent mapmarker clicks from opening the menu

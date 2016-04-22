@@ -9,7 +9,33 @@ function initMap() {
     map = new google.maps.Map(mapDiv, {
         center: {lat: 25.721, lng: -80.2777},
         mapTypeControl: false,
-        zoom: 13
+        zoom: 13,
+        //container for functions to be called outside the map function
+        methods: {
+            //Badly placed variable to hack my way to usable scope
+            placeDataHolder: null,
+            callback: function(results, status) {
+                map.methods.placeDataHolder = results[0];
+                console.log(map.methods.placeDataHolder);
+            },
+            centerToMarker: function(place) {
+                var placeData = map.methods.returnPlace(place.address);
+
+                console.log(placeData);
+
+                //map.panTo(placeData.geometry.location);
+                map.setZoom(15);
+            },
+            returnPlace: function(place) {
+                map.methods.placeDataHolder = null;
+                var service = new google.maps.places.PlacesService(map);
+                var request = {
+                    query: place
+                };
+                console.log(map.methods.placeDataHolder);
+                service.textSearch(request, map.methods.callback);
+            }
+        }
     });
 
     function locationFinder() {
