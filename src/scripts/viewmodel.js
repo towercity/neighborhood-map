@@ -148,7 +148,4 @@ var Location = function(data) {
 
 //Declare veiwmodel outside of applyBindings so map functions can access it
 var my = {vm: null};
-window.onload = function() {
-    my.vm = new ViewModel();
-    ko.applyBindings(my.vm);
-};
+//vm bindings applied in map.js, so they can be accessed by map

@@ -37,16 +37,6 @@ function initMap() {
         }
     });
 
-    function locationFinder() {
-        var locations = [];
-
-        locationArray.forEach(function(place) {
-            locations.push(place.address);
-        });
-
-        return locations;
-    }
-
     function createMapMarker(placeData) {
         var lat = placeData.geometry.location.lat();
         var lon = placeData.geometry.location.lng();
@@ -71,20 +61,26 @@ function initMap() {
         }
     }
 
-    function pinMarkers(locations) {
+    function pinMarkers() {
         var service = new google.maps.places.PlacesService(map);
+
+        var locations = my.vm.locations();
+        console.log(locations);
+
 
         locations.forEach(function(place) {
             var request = {
-                query: place
+                query: place.address
             };
             service.textSearch(request, callback);
         });
     }
 
     // Waits till whole page is loaded to ensure vars from other files are available
-    $(document).ready(function() {
-        var locations = locationFinder();
-        pinMarkers(locations);
-    });
+    window.onload = function() {
+        //calls viewmodel here, so that its loaded for us in map function
+        my.vm = new ViewModel();
+        ko.applyBindings(my.vm);
+        pinMarkers();
+    };
 };
