@@ -60,7 +60,10 @@ var ViewModel = function() {
 
     //variables
 
-    this.locations = ko.observableArray(locationArray);
+    this.locations = ko.observableArray([]);
+    locationArray.forEach(function(place) {
+        self.locations.push(new Location(place));
+    })
     this.selectedLocation = ko.observable(this.locations()[0]);
 
     //methods
@@ -127,20 +130,20 @@ var ViewModel = function() {
 };
 
 var Location = function(data) {
-    this.name = data.name;
-    this.desc = data.desc;
     this.address = data.address;
+    this.desc = data.desc;
     this.price = data.price;
     this.bedrooms = data.bedrooms;
     this.bathrooms = data.bathrooms;
     this.sqft = data.sqft;
     this.laundry = data.laundry;
     this.available = data.available;
+    this.contactName = data.contactName;
+    this.contactPhone = data.contactPhone;
     this.link = data.link;
 
-    //pulls lat-lng data from address via google maps api and puts into this.coordinates
-    var coordinatesObject = map.methods.geocodeAddress(data.address);
-    this.coordinates = {lat: coordinatesObject.lat, lng: coordinatesObject.lng};
+    //get photo from streetview
+    this.streetviewPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + this.address + ' ';
 }
 
 //Declare veiwmodel outside of applyBindings so map functions can access it

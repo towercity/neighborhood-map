@@ -41,9 +41,21 @@
         </div>
         <div id="popup-text">
             <!-- TODO: add instagram/other APIs here -->
-            <img id="popup-pic" src="http://lorempixel.com/500/500/city">
-            <h2 id="popup-title" data-bind="text: name"></h2>
+            <img id="popup-pic" data-bind="attr: {src: streetviewPhoto}">
+            <h2 id="popup-title" data-bind="text: address"></h2>
+            <h3 id="popup-rent">Rent: <span data-bind="text: price"></span></h3>
+            <ul id="popup-info">
+                <li>Bedrooms: <span data-bind="text: bedrooms"></span></li>
+                <li>Bathrooms: <span data-bind="text: bathrooms"></span></li>
+                <li>Square Feet: <span data-bind="text: sqft"></span></li>
+                <li>Laundry: <span data-bind="text: laundry"></span></li>
+                <li>Available: <span data-bind="text: available"></span></li>
+            </ul>
             <p id="popup-desc" data-bind="text: desc"></p>
+            <ul id="popup-contact">
+                <li>Contact: <span data-bind="text: contactName"></span> - <span data-bind="text: contactPhone"></span></li>
+                <li><a data-bind="attr: {href: link}">More info</a></li>
+            </ul>
         </div>
     </article>
 
