@@ -12,19 +12,18 @@ function initMap() {
         zoom: 13,
         //container for functions to be called outside the map function
         methods: {
-            //Badly placed variable to hack my way to usable scope
-            placeDataHolder: null,
-            callback: function(results, status) {
-                map.methods.placeDataHolder = results[0];
-                console.log(map.methods.placeDataHolder);
-            },
             centerToMarker: function(place) {
-                var placeData = map.methods.returnPlace(place.address);
+                var service = new google.maps.places.PlacesService(map);
+                var request = {
+                    query: place.address
+                };
 
-                console.log(placeData);
-
-                //map.panTo(placeData.geometry.location);
-                map.setZoom(15);
+                service.textSearch(request, function(results, status) {
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        map.setZoom(15);
+                        map.panTo(results[0].geometry.location);
+                    }
+                });
             },
             returnPlace: function(place) {
                 map.methods.placeDataHolder = null;
