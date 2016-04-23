@@ -81,5 +81,7 @@ function initMap() {
         my.vm = new ViewModel();
         ko.applyBindings(my.vm);
         map.methods.pinMarkers();
+        //calls for foursquare data
+        my.vm.callFoursquare();
     };
 };

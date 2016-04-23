@@ -22,7 +22,7 @@
             <input type="text" placeholder="Location" id="search-bar" data-bind="textInput: searchInput" autofocus>
         </form>
 
-        <!-- slide-in menu -->
+        <!-- slide-down menu -->
         <div id="slide-menu">
             <ul id="place-list" data-bind="foreach: filteredLocations">
                 <li class="place-item" data-bind="click: $parent.clickLocation">
@@ -45,7 +45,6 @@
             <div id="pophead-border"></div>
         </div>
         <div id="popup-text">
-            <!-- TODO: add instagram/other APIs here -->
             <img id="popup-pic" data-bind="attr: {src: streetviewPhoto}">
             <h2 id="popup-title" data-bind="text: address"></h2>
             <h3 id="popup-rent">Rent: $<span data-bind="text: price"></span></h3>
@@ -61,6 +60,18 @@
                 <li>Contact: <span data-bind="text: contactName"></span> - <span data-bind="text: contactPhone"></span></li>
                 <li><a data-bind="attr: {href: link}">More info</a></li>
             </ul>
+        </div>
+        <div id="foursquare-container" data-bind="foreach: $parent.foursquareResults">
+            <div class="foursquare-result">
+                <h3 class="foursquare-name" data-bind="text: name"></h3>
+                <ul class="foursquare-info-container">
+                    <li class="foursquare-info" data-bind="text: price, visible: price"></li>
+                    <li class="foursquare-info" data-bind="text: rating, visible: rating"></li>
+                    <li class="foursquare-info" data-bind="text: category, visible: rating"></li>
+                    <li class="foursquare-info" data-bind="text: address, visible: rating"></li>
+                    <li class="foursquare-info" data-bind="text: website, visible: website"></li>
+                </ul>
+            </div>
         </div>
     </article>
 

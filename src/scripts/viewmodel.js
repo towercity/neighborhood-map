@@ -15,7 +15,7 @@ var locationArray = [
         link: 'http://www.trulia.com/rental/3211021780-439-Sevilla-Ave-4-Coral-Gables-FL-33134#photo-2'
     },
     {
-        address: '701 Valencia Ave #1F, Coral Gables, Florida 33134',
+        address: '701 Valencia Ave 1F, Coral Gables, Florida 33134',
         desc: '',
         price: 1350,
         bedrooms: 2,
@@ -41,7 +41,7 @@ var locationArray = [
         link: 'http://www.trulia.com/rental/3220846514-11-Menores-Ave-Coral-Gables-FL-33134#photo-13'
     },
     {
-        address: '344 Mendoza Ave #2, Coral Gables, Florida 33134',
+        address: '344 Mendoza Ave 2, Coral Gables, Florida 33134',
         desc: '',
         price: 1375,
         bedrooms: 1,
@@ -84,6 +84,8 @@ var ViewModel = function() {
     this.selectedLocation = ko.observable(this.locations()[0]);
     this.searchInput = ko.observable('');
     this.filterOn = ko.observable(false);
+
+    this.foursquareResults = ko.observableArray([]);
 
 
     //methods
@@ -184,41 +186,33 @@ var ViewModel = function() {
         }
     };
 
-    this.callYelp = function() {
-        var yelpURL = 'https://api.yelp.com/v2/search';
+    this.callFoursquare = function() {
+        var url = 'https://api.foursquare.com/v2/venues/search' +
+            '?client_id=CNI2RXY5KHIB4ZGDBT3YIBUMVAEJHFDJ23EJFO44PTCHEXQA' +
+            '&client_secret=TYAYB40ONEWVNBRMGB0SZCHEU4352JZMY0M3W3SUUSHHTBFX' +
+            '&v=20130815' +
+            '&near=' + self.selectedLocation().address +
+            '&query=food' +
+            '&limit=5' +
+            '&radius=1000';
 
-        var oauth = OAuth({
-            consumer: {
-                public: 'P02OrHl8q9_kzj1Ip5IBGA',
-                secret: '0E5bJbvBXaF7cWalr6htZlDsAZo'
-            },
-            signature_method: 'HMAC-SHA1'
-        });
+        $.get(url, self.pushFoursquareResults);
+    }
 
-        var request_data = {
-            url: yelpURL,
-            method: 'GET',
-            data: {
-                term: 'food',
-                location: self.selectedLocation().address,
-                limit: 5,
-                sort: 1
+    this.pushFoursquareResults = function(data) {
+        var venues = data.response.venues;
+
+        self.foursquareResults([]);
+        venues.forEach(function(place) {
+            var venueObj = {
+                name: place.name,
+                category: place.categories[0].name,
+                price: place.price,
+                rating: place.rating,
+                address: place.address,
+                website: place.url
             }
-        }
-
-        var token = {
-            public: 'kwSKXNTl-EqlPDHCi9zWgBDzv-vymPn0',
-            secret: 'KfCO_MN4TfauZt24LtKnED-6Suc'
-        }
-
-        $.ajax({
-            url: request_data.url,
-            type: request_data.method,
-            data: oauth.authorize(request_data, token),
-            dataType: "jsonp",
-            done: function(data) {
-                console.log(data);
-            }
+            self.foursquareResults.push(venueObj);
         });
     }
 };
