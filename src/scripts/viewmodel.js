@@ -83,6 +83,7 @@ var ViewModel = function() {
     })
     this.selectedLocation = ko.observable(this.locations()[0]);
     this.searchInput = ko.observable('');
+    this.filterOn = ko.observable(false);
 
 
     //methods
@@ -91,6 +92,7 @@ var ViewModel = function() {
         if (self.searchInput() === '' || self.searchInput() === ' ') {
             //resets the filter
             self.filteredLocations(self.locations());
+            self.filterOn(false);
         } else {
             self.filteredLocations([]);
             self.locations().forEach(function(place) {
@@ -99,8 +101,18 @@ var ViewModel = function() {
                     self.filteredLocations.push(place);
                 }
             });
+            self.filterOn(true);
         }
-        self.toggleMenu();
+        self.openMenu();
+    }
+
+    this.removeFilter = function() {
+        self.closeMenu();
+        self.searchInput('');
+        self.filterOn(false);
+        window.setTimeout(function() {
+            self.filteredLocations(self.locations());
+        }, 300);
     }
 
     this.switchLocation = function(data) {
@@ -114,6 +126,13 @@ var ViewModel = function() {
     //container function to prevent mapmarker clicks from opening the menu
     this.closeMenu = function() {
         if ($('#slide-menu').hasClass('open')) {
+            self.toggleMenu();
+        }
+    }
+
+    //container function to prevent filtering from closing the menu
+    this.openMenu = function() {
+        if (!($('#slide-menu').hasClass('open'))) {
             self.toggleMenu();
         }
     }

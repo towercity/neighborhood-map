@@ -30,6 +30,9 @@
                     <span data-bind="text: address"></span>
                 </li>
             </ul>
+            <ul id="place-list" data-bind="if: filterOn">
+                <li class="place-item" data-bind="click: removeFilter"><i class="fa fa-times place-bullet" aria-hidden="true"></i>Remove filter</li>
+            </ul>
         </div>
     </header>
 
@@ -67,9 +70,7 @@
     <!-- required files for oauth -->
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js" async></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js" async></script>
-
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js" async></script>
-
     <script src="scripts/libs/oauth-1.0a.js" async></script>
 
     <script src="scripts/libs/knockout-3.4.0.js" async></script>

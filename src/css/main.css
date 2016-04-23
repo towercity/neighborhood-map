@@ -11,6 +11,10 @@
     color: #444;
 }
 
+body {
+    height: 0;
+}
+
 form {
     display: inline;
 }
