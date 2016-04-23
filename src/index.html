@@ -18,11 +18,13 @@
     <!-- search header -->
     <header id="search-container">
         <span id="hamburger" data-bind="click: toggleMenu"><i class="fa fa-bars fa-lg"></i></span>
-        <input type="text" placeholder="Location" id="search-bar" autofocus>
+        <form data-bind="submit: filterLocations">
+            <input type="text" placeholder="Location" id="search-bar" data-bind="textInput: searchInput" autofocus>
+        </form>
 
         <!-- slide-in menu -->
         <div id="slide-menu">
-            <ul id="place-list" data-bind="foreach: locations">
+            <ul id="place-list" data-bind="foreach: filteredLocations">
                 <li class="place-item" data-bind="click: $parent.clickLocation">
                     <span><i class="fa fa-map-pin place-bullet"></i></span>
                     <span data-bind="text: address"></span>
@@ -67,7 +69,7 @@
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js" async></script>
 
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js" async></script>
-    
+
     <script src="scripts/libs/oauth-1.0a.js" async></script>
 
     <script src="scripts/libs/knockout-3.4.0.js" async></script>

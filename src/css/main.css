@@ -11,6 +11,10 @@
     color: #444;
 }
 
+form {
+    display: inline;
+}
+
 /* Reset input box styling */
 input[type="text"] {
   margin: 0;

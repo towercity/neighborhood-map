@@ -74,12 +74,34 @@ var ViewModel = function() {
     //variables
 
     this.locations = ko.observableArray([]);
+    this.filteredLocations = ko.observableArray([]);
     locationArray.forEach(function(place) {
         self.locations.push(new Location(place));
     })
+    locationArray.forEach(function(place) {
+        self.filteredLocations.push(new Location(place));
+    })
     this.selectedLocation = ko.observable(this.locations()[0]);
+    this.searchInput = ko.observable('');
+
 
     //methods
+
+    this.filterLocations = function() {
+        if (self.searchInput() === '' || self.searchInput() === ' ') {
+            //resets the filter
+            self.filteredLocations(self.locations());
+        } else {
+            self.filteredLocations([]);
+            self.locations().forEach(function(place) {
+                var i = place.address.search(self.searchInput());
+                if (i > 0) {
+                    self.filteredLocations.push(place);
+                }
+            });
+        }
+        self.toggleMenu();
+    }
 
     this.switchLocation = function(data) {
         self.selectedLocation(data);
