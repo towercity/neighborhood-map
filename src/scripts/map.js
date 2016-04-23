@@ -37,9 +37,12 @@ function initMap() {
 
         locations.forEach(function(place) {
             var request = {
-                query: place.address
+                query: place.address,
+                //sneaking the array index in here so that when you click on the
+                //marker, the correct location can be accessed
+                index: locationIndex
             };
-            service.textSearch(request, function(results, status) {
+            service.textSearch(request, function(results, status, i) {
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                     var placeData = results[0];
                     var lat = placeData.geometry.location.lat();
@@ -50,16 +53,14 @@ function initMap() {
                       map: map,
                       position: placeData.geometry.location,
                       name: name,
-                      index: locationIndex
+                      index: request.index
                     });
 
-                    marker.addListener('click', function(i) {
-                        console.log(marker.index);
+                    marker.addListener('click', function() {
                         var locations = my.vm.locations();
-                        console.log(locations);
                         map.setZoom(15);
                         map.panTo(placeData.geometry.location);
-                        my.vm.clickLocation(locations[1]);
+                        my.vm.clickLocation(locations[marker.index]);
                     });
                 }
             });

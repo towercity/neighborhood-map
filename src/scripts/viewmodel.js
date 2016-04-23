@@ -119,7 +119,6 @@ var ViewModel = function() {
 
     //container function for all methods run when a location is clicked
     this.clickLocation = function(data) {
-        console.log(data);
         self.switchLocation(data);
         self.closeMenu();
         self.centerToMarker(data);
