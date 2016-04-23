@@ -52,6 +52,19 @@ var locationArray = [
         contactName: 'George Faehnle',
         contactPhone: '305-405-0615',
         link: 'http://www.trulia.com/rental/3220654549-344-Mendoza-Ave-2-Coral-Gables-FL-33134#photo-2'
+    },
+    {
+        address: '340 Madeira Avenue, Coral Gables, Florida 33134',
+        desc: '',
+        price: 1150,
+        bedrooms: 1,
+        bathrooms: 1,
+        sqft: 0,
+        laundry: 'ASK',
+        available: '',
+        contactName: 'MJ',
+        contactPhone: '786-234-1469',
+        link: 'http://miami.craigslist.org/mdc/apa/5550813663.html'
     }
 ];
 
