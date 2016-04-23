@@ -159,6 +159,10 @@ input[type="text"]:focus {
     text-align: justify;
 }
 
+.foursquare-result {
+    margin: 5px;
+}
+
 /* Locations list */
 
 .place-item {

@@ -7,7 +7,6 @@
     <title>Neighborhood Map</title>
 
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" media="(max-width: 515px)" href="css/mobile.css">
 
     <link rel="stylesheet" href="css/libs/font-awesome-4.5.0/css/font-awesome.min.css">
 </head>
@@ -61,9 +60,10 @@
                 <li><a data-bind="attr: {href: link}">More info</a></li>
             </ul>
         </div>
+        <h2>Nearby Restaurants:</h2>
         <div id="foursquare-container" data-bind="foreach: $parent.foursquareResults">
-            <div class="foursquare-result">
-                <h3 class="foursquare-name" data-bind="text: name"></h3>
+            <ol class="foursquare-result">
+                <li class="foursquare-name" data-bind="text: name"></li>
                 <ul class="foursquare-info-container">
                     <li class="foursquare-info" data-bind="text: price, visible: price"></li>
                     <li class="foursquare-info" data-bind="text: rating, visible: rating"></li>
@@ -71,7 +71,8 @@
                     <li class="foursquare-info" data-bind="text: address, visible: rating"></li>
                     <li class="foursquare-info" data-bind="text: website, visible: website"></li>
                 </ul>
-            </div>
+            </ol>
+            <br>
         </div>
     </article>
 
