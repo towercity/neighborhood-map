@@ -5,6 +5,8 @@ var map = 0;
 
 function initMap() {
     var mapDiv = document.getElementById('map-div');
+    var locationIndex = 0;
+
     // Create a map object and specify the DOM element for display.
     map = new google.maps.Map(mapDiv, {
         center: {lat: 25.721, lng: -80.2777},
@@ -13,7 +15,6 @@ function initMap() {
         //container for functions to be called outside the map function
         methods: {
             centerToMarker: function(place) {
-                console.log(place);
                 var service = new google.maps.places.PlacesService(map);
                 var request = {
                     query: place.address
@@ -25,15 +26,6 @@ function initMap() {
                         map.panTo(results[0].geometry.location);
                     }
                 });
-            },
-            returnPlace: function(place) {
-                map.methods.placeDataHolder = null;
-                var service = new google.maps.places.PlacesService(map);
-                var request = {
-                    query: place
-                };
-                console.log(map.methods.placeDataHolder);
-                service.textSearch(request, map.methods.callback);
             }
         }
     });
@@ -41,14 +33,13 @@ function initMap() {
     function pinMarkers() {
         var service = new google.maps.places.PlacesService(map);
         var locations = my.vm.locations();
+        locationIndex = 0;
 
-        var i = 0;
         locations.forEach(function(place) {
             var request = {
                 query: place.address
             };
             service.textSearch(request, function(results, status) {
-                console.log(locations[i]);
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                     var placeData = results[0];
                     var lat = placeData.geometry.location.lat();
@@ -58,19 +49,21 @@ function initMap() {
                     var marker = new google.maps.Marker({
                       map: map,
                       position: placeData.geometry.location,
-                      name: name
+                      name: name,
+                      index: locationIndex
                     });
 
-                    marker.addListener('click', function(data) {
-                        console.log(data);
+                    marker.addListener('click', function(i) {
+                        console.log(marker.index);
+                        var locations = my.vm.locations();
+                        console.log(locations);
                         map.setZoom(15);
                         map.panTo(placeData.geometry.location);
-                        console.log(locations[i]);
-                        my.vm.clickLocation(locations[i]);
+                        my.vm.clickLocation(locations[1]);
                     });
                 }
-                i++;
             });
+            locationIndex++;
         });
     }
 
