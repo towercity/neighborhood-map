@@ -81,7 +81,7 @@ input[type="text"]:focus {
 #slide-menu {
     display: none;
     position: relative;
-    width: 100%
+    width: 100%;
     right: 5px;
     top: 5px;
     max-height: 45vh;
