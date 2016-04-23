@@ -104,6 +104,7 @@ var ViewModel = function() {
             self.filterOn(true);
         }
         self.openMenu();
+        map.methods.pinMarkers();
     }
 
     this.removeFilter = function() {
@@ -112,7 +113,8 @@ var ViewModel = function() {
         self.filterOn(false);
         window.setTimeout(function() {
             self.filteredLocations(self.locations());
-        }, 300);
+            map.methods.pinMarkers();
+        }, 100);
     }
 
     this.switchLocation = function(data) {
