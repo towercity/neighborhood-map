@@ -187,7 +187,7 @@ var ViewModel = function() {
     };
 
     this.callFoursquare = function() {
-        var url = 'https://api.foursre.com/v2/venues/search' +
+        var url = 'https://api.foursquare.com/v2/venues/search' +
             '?client_id=CNI2RXY5KHIB4ZGDBT3YIBUMVAEJHFDJ23EJFO44PTCHEXQA' +
             '&client_secret=TYAYB40ONEWVNBRMGB0SZCHEU4352JZMY0M3W3SUUSHHTBFX' +
             '&v=20130815' +
