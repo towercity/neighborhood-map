@@ -140,6 +140,44 @@ var ViewModel = function() {
             self.toggleInfoWindow();
         }
     };
+
+    this.callYelp = function() {
+        var yelpURL = 'https://api.yelp.com/v2/search';
+
+        var oauth = OAuth({
+            consumer: {
+                public: 'P02OrHl8q9_kzj1Ip5IBGA',
+                secret: '0E5bJbvBXaF7cWalr6htZlDsAZo'
+            },
+            signature_method: 'HMAC-SHA1'
+        });
+
+        var request_data = {
+            url: yelpURL,
+            method: 'GET',
+            data: {
+                term: 'food',
+                location: self.selectedLocation().address,
+                limit: 5,
+                sort: 1
+            }
+        }
+
+        var token = {
+            public: 'kwSKXNTl-EqlPDHCi9zWgBDzv-vymPn0',
+            secret: 'KfCO_MN4TfauZt24LtKnED-6Suc'
+        }
+
+        $.ajax({
+            url: request_data.url,
+            type: request_data.method,
+            data: oauth.authorize(request_data, token),
+            dataType: "jsonp",
+            done: function(data) {
+                console.log(data);
+            }
+        });
+    }
 };
 
 var Location = function(data) {
