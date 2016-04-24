@@ -107,7 +107,6 @@ var ViewModel = function() {
             });
             self.filterOn(true);
 
-
         }
         self.openMenu();
         map.methods.pinMarkers();
