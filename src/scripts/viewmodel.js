@@ -142,8 +142,22 @@ var ViewModel = function() {
     };
 
     this.toggleMenu = function() {
+        var $windowWidth = $(window).width();
         $('#slide-menu').slideToggle('fast');
         $('#slide-menu').toggleClass('open');
+
+        //prevents popup rom overlapping with menu on smaller screen
+        if ($windowWidth < 830) {
+            self.closeInfoWindow();
+        }
+    };
+
+    this.closeInfoWindow = function() {
+        var $popup = $('#popup');
+
+        if ($popup.hasClass('active')) {
+            self.toggleInfoWindow();
+        }
     };
 
     this.toggleInfoWindow = function() {
