@@ -77,10 +77,10 @@ var ViewModel = function() {
     this.filteredLocations = ko.observableArray([]);
     locationArray.forEach(function(place) {
         self.locations.push(new Location(place));
-    })
+    });
     locationArray.forEach(function(place) {
         self.filteredLocations.push(new Location(place));
-    })
+    });
     this.selectedLocation = ko.observable(this.locations()[0]);
     this.searchInput = ko.observable('');
     this.filterOn = ko.observable(false);
@@ -107,7 +107,7 @@ var ViewModel = function() {
         }
         self.openMenu();
         map.methods.pinMarkers();
-    }
+    };
 
     this.removeFilter = function() {
         self.closeMenu();
@@ -117,11 +117,11 @@ var ViewModel = function() {
             self.filteredLocations(self.locations());
             map.methods.pinMarkers();
         }, 100);
-    }
+    };
 
     this.switchLocation = function(data) {
         self.selectedLocation(data);
-    }
+    };
 
     this.centerToMarker = function(data) {
         map.methods.centerToMarker(data);
@@ -132,14 +132,14 @@ var ViewModel = function() {
         if ($('#slide-menu').hasClass('open')) {
             self.toggleMenu();
         }
-    }
+    };
 
     //container function to prevent filtering from closing the menu
     this.openMenu = function() {
         if (!($('#slide-menu').hasClass('open'))) {
             self.toggleMenu();
         }
-    }
+    };
 
     this.toggleMenu = function() {
         $('#slide-menu').slideToggle('fast');
@@ -200,7 +200,7 @@ var ViewModel = function() {
             $('#foursquare-title').text('No information recieved from the server');
             console.log("ERR");
         });
-    }
+    };
 
     this.pushFoursquareResults = function(data) {
         var venues = data.response.venues;
@@ -214,10 +214,10 @@ var ViewModel = function() {
                 rating: place.rating,
                 address: place.address,
                 website: place.url
-            }
+            };
             self.foursquareResults.push(venueObj);
         });
-    }
+    };
 };
 
 var Location = function(data) {
@@ -235,7 +235,7 @@ var Location = function(data) {
 
     //get photo from streetview
     this.streetviewPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + this.address + ' ';
-}
+};
 
 //Declare veiwmodel outside of applyBindings so map functions can access it
 var my = {vm: null};
