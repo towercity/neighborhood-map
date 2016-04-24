@@ -90,7 +90,7 @@ var ViewModel = function() {
 
     //methods
 
-    this.filterLocations = function() {
+    this.filterLocations = function(data, event) {
         if (self.searchInput() === '' || self.searchInput() === ' ') {
             //resets the filter
             self.filteredLocations(self.locations());
@@ -106,6 +106,8 @@ var ViewModel = function() {
                 }
             });
             self.filterOn(true);
+
+
         }
         self.openMenu();
         map.methods.pinMarkers();
