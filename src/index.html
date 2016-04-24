@@ -18,7 +18,7 @@
     <header id="search-container">
         <span id="hamburger" data-bind="click: toggleMenu"><i class="fa fa-bars fa-lg"></i></span>
         <form data-bind="submit: filterLocations">
-            <input type="text" placeholder="Location" id="search-bar" data-bind="textInput: searchInput" autofocus>
+            <input type="text" placeholder="Location" id="search-bar" data-bind="textInput: searchInput, event: { keyup: filterLocations }" autofocus>
         </form>
 
         <!-- slide-down menu -->

@@ -109,6 +109,9 @@ var ViewModel = function() {
         }
         self.openMenu();
         map.methods.pinMarkers();
+
+        //allows ko to process input as well
+        return true;
     };
 
     this.removeFilter = function() {

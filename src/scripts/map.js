@@ -84,4 +84,4 @@ function initMap() {
         //calls for foursquare data
         my.vm.callFoursquare();
     };
-};
+}
