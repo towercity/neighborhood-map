@@ -98,7 +98,9 @@ var ViewModel = function() {
         } else {
             self.filteredLocations([]);
             self.locations().forEach(function(place) {
-                var i = place.address.search(self.searchInput());
+                var address = place.address.toLowerCase();
+                var input = self.searchInput().toLowerCase();
+                var i = address.indexOf(input);
                 if (i > 0) {
                     self.filteredLocations.push(place);
                 }
