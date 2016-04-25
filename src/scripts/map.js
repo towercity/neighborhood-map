@@ -40,12 +40,9 @@ function initMap() {
                 var locations = my.vm.filteredLocations();
                 locationIndex = 0;
 
-                locations.forEach(function(place) {
+                locations.forEach(function(place, idx) {
                     var request = {
-                        query: place.address,
-                        //sneaking the array index in here so that when you click on the
-                        //marker, the correct location can be accessed
-                        index: locationIndex
+                        query: place.address
                     };
                     service.textSearch(request, function(results, status) {
                         if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -54,14 +51,14 @@ function initMap() {
                             var lon = placeData.geometry.location.lng();
                             var name = placeData.formatted_address;
 
-                            map.markers.push(new google.maps.Marker({
+                            map.markers[idx] = new google.maps.Marker({
                                 map: map,
                                 position: placeData.geometry.location,
                                 name: name,
-                                index: request.index
-                            }));
+                                index: idx
+                            });
 
-                            map.markers[request.index].addListener('click', function() {
+                            map.markers[idx].addListener('click', function() {
                                 var locations = my.vm.locations();
                                 map.setZoom(15);
                                 map.panTo(placeData.geometry.location);
