@@ -38,17 +38,16 @@ function initMap() {
 
                 var service = new google.maps.places.PlacesService(map);
                 var locations = my.vm.filteredLocations();
-                locationIndex = 0;
 
-                locations.forEach(function(place, idx) {
+                locations.forEach(function(place) {
                     var request = {
-                        query: place.address
+                        query: place.address,
+                        index: place.index
                     };
                     service.textSearch(request, function(results, status) {
                         if (status == google.maps.places.PlacesServiceStatus.OK) {
                             var placeData = results[0];
-                            var lat = placeData.geometry.location.lat();
-                            var lon = placeData.geometry.location.lng();
+                            var idx = request.index;
                             var name = placeData.formatted_address;
 
                             map.markers[idx] = new google.maps.Marker({
@@ -62,12 +61,26 @@ function initMap() {
                                 var locations = my.vm.locations();
                                 map.setZoom(15);
                                 map.panTo(placeData.geometry.location);
-                                my.vm.clickLocation(locations[map.markers[request.index].index]);
+                                my.vm.clickLocation(locations[map.markers[idx].index]);
+                                //stop all other markers from bouncing and bounce clicked marker
+                                map.markers.forEach(function(marker) {
+                                    if (marker.index === idx) {
+                                        map.methods.startBounce(marker);
+                                    } else {
+                                        map.methods.stopBounce(marker);
+                                    }
+                                });
                             });
                         }
                     });
                     locationIndex++;
                 });
+            },
+            stopBounce: function(marker) {
+                marker.setAnimation(null);
+            },
+            startBounce: function(marker) {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
             }
         }
     });

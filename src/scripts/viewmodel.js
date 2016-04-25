@@ -75,11 +75,11 @@ var ViewModel = function() {
 
     this.locations = ko.observableArray([]);
     this.filteredLocations = ko.observableArray([]);
-    locationArray.forEach(function(place) {
-        self.locations.push(new Location(place));
+    locationArray.forEach(function(place, index) {
+        self.locations.push(new Location(place, index));
     });
-    locationArray.forEach(function(place) {
-        self.filteredLocations.push(new Location(place));
+    locationArray.forEach(function(place, index) {
+        self.filteredLocations.push(new Location(place, index));
     });
     this.selectedLocation = ko.observable(this.locations()[0]);
     this.searchInput = ko.observable('');
@@ -161,6 +161,7 @@ var ViewModel = function() {
     this.closeInfoWindow = function() {
         var $popup = $('#popup');
 
+
         if ($popup.hasClass('active')) {
             self.toggleInfoWindow();
         }
@@ -193,6 +194,10 @@ var ViewModel = function() {
         }
 
         $popup.toggleClass('active');
+
+        map.markers.forEach(function(marker) {
+            map.methods.stopBounce(marker);
+        });
     };
 
     //container function for all methods run when a location is clicked
@@ -204,6 +209,17 @@ var ViewModel = function() {
         if (!$('#popup').hasClass('active')) {
             self.toggleInfoWindow();
         }
+
+        console.log(data.index);
+
+        //stop all other markers from bouncing and bounce clicked marker
+        map.markers.forEach(function(marker) {
+            if (marker.index === data.index) {
+                map.methods.startBounce(marker);
+            } else {
+                map.methods.stopBounce(marker);
+            }
+        });
     };
 
     this.callFoursquare = function() {
@@ -240,7 +256,7 @@ var ViewModel = function() {
     };
 };
 
-var Location = function(data) {
+var Location = function(data, index) {
     this.address = data.address;
     this.desc = data.desc;
     this.price = data.price;
@@ -255,6 +271,8 @@ var Location = function(data) {
 
     //get photo from streetview
     this.streetviewPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + this.address + ' ';
+
+    this.index = index;
 };
 
 //Declare veiwmodel outside of applyBindings so map functions can access it
