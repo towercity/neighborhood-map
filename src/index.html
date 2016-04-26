@@ -42,7 +42,7 @@
             <div id="pophead-border"></div>
         </div>
         <div id="popup-text">
-            <img id="popup-pic" data-bind="attr: {src: streetviewPhoto}">
+            <img id="popup-pic" data-bind="attr: {src: streetviewPhoto} alt="Street view image"">
             <h2 id="popup-title" data-bind="text: address"></h2>
             <h3 id="popup-rent">Rent: $<span data-bind="text: price"></span></h3>
             <ul id="popup-info">
@@ -60,7 +60,7 @@
         </div>
         <h2 id="foursquare-title">Nearby Restaurants:</h2>
         <div id="foursquare-container" data-bind="foreach: $parent.foursquareResults">
-            <ol class="foursquare-result">
+            <li class="foursquare-result">
                 <li class="foursquare-name" data-bind="text: name"></li>
                 <ul class="foursquare-info-container">
                     <li class="foursquare-info" data-bind="text: price, visible: price"></li>
@@ -69,7 +69,7 @@
                     <li class="foursquare-info" data-bind="text: address, visible: rating"></li>
                     <li class="foursquare-info" data-bind="text: website, visible: website"></li>
                 </ul>
-            </ol>
+            </li>
             <br>
         </div>
     </article>
