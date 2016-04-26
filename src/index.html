@@ -74,12 +74,18 @@
         </div>
     </article>
 
+    <script>
+    function googleError() {
+        $('#map-div').html('<h1 style="text-align:center; margin-top:25px;">Map Could Not Load</h1>');
+    }
+    </script>
+
     <script src="scripts/libs/knockout-3.4.0.js"></script>
     <script src="scripts/libs/jquery-1.12.3.min.js"></script>
     <script src="scripts/viewmodel.js"></script>
     <script src="scripts/map.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-s3K891rRSaySEtDuopi1HzJPQhBy5jE&callback=initMap&libraries=places"
-    async></script>
+    async onerror="googleError()"></script>
 </body>
 <html>
