@@ -205,12 +205,14 @@ var ViewModel = function() {
         self.switchLocation(data);
         self.closeMenu();
         self.centerToMarker(data);
+
+        //loads the foursquare API info
+        my.vm.callFoursquare();
+
         //checks if info window is open before toggling it
         if (!$('#popup').hasClass('active')) {
             self.toggleInfoWindow();
         }
-
-        console.log(data.index);
 
         //stop all other markers from bouncing and bounce clicked marker
         map.markers.forEach(function(marker) {
@@ -233,8 +235,7 @@ var ViewModel = function() {
             '&radius=1000';
 
         $.get(url, self.pushFoursquareResults).error(function() {
-            $('#foursquare-title').text('No information recieved from the server');
-            console.log("ERR");
+            $('#foursquare-title').text('No restautants could be loaded from the foursquare server');
         });
     };
 
