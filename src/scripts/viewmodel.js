@@ -119,6 +119,8 @@ var ViewModel = function() {
         self.closeMenu();
         self.searchInput('');
         self.filterOn(false);
+
+        //waits until the menu has closed before de-filtering locations
         window.setTimeout(function() {
             self.filteredLocations(self.locations());
             map.methods.pinMarkers();
